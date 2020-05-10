@@ -35,7 +35,7 @@
         <li>
           <img src="/img/ss_4.jpg"> <!-- random image -->
         </li>
-        </ul>
+      </ul>
     </div>
     <div class="section white">
       <div class="container">
@@ -57,17 +57,17 @@
               <!-- Mobile version -->
               <div class="row hide-on-large-only" id="mobilehere">
 
-              <!-- Cards for Mobile view will be populated here -->
+                <!-- Cards for Mobile view will be populated here -->
 
               </div>
-              
+
             </div>
 
             <script>
               //set the list_id to id of mentor list in trello board
               const list_id = "5eb715b48caa18614425c25e";
 
-              function makeCard(image, trelloCard_name=" ", github=" ", Country=" ", TimeZone=" ", description=" ",Label=" ") {
+              function makeCard(image, trelloCard_name = " ", github = " ", Country = " ", TimeZone = " ", description = " ", Label = " ") {
 
                 const time = moment.tz(moment(), TimeZone).format('HH:mm [(GMT] Z[)]');
                 const webcard = `
@@ -92,7 +92,7 @@
                     </div>
                   </div>`;
 
-                  const mobilecard = `
+                const mobilecard = `
                 <div class="col s12">
                   <div class="card light-green lighten-5">
                     <div class="card-content black-text"> 
@@ -118,8 +118,9 @@
                   `<div id="modal` + github + `" class="modal">
                     <div class="modal-content">
                      <div class="black-text">
-                  <h1>`+ trelloCard_name + `</h1>
-                  <h5>`+description+`</h5>
+                    <h1>`+ trelloCard_name + `</h1>
+                      <h2>Introduction :</h2>
+                       <h4>`+ description + `</h4>
                   <blockquote>
                     <div>Github: <a href="https://github.com/`+ github + `">@` + github + `</a></div>
                     <div>Country:
@@ -128,12 +129,12 @@
                     <div>
                       Local Time:
                       `+ time + `
-                          </div>
+                    </div>
                   </blockquote>
-                  <br />
+                  <br/>
                   <h3>Talk to this mentor about:</h3>
                   <div>
-                  `+Label+`
+                  `+ Label + `
                   </div>
                   
                 </div>
@@ -149,33 +150,34 @@
 
               }
 
-            
+
               $.getJSON('https://api.trello.com/1/lists/' + list_id + '/cards', function (trelloList) {
 
                 $.each(trelloList, function (index, trelloCards) {
 
                   const url = trelloCards.url + '.json?fields=name,labels,cover,desc&customFields=true&customFieldItems=true'
 
-                  var Label='';
+                  var Label = '';
                   var github;
                   var TimeZone;
                   var Country;
                   var description;
 
                   $.getJSON(url, function (trelloCard) {
-                    var image="/img/profile-placeholder.png";
-                    
-                    if(trelloCard.cover.scaled!=undefined){
-                     image = trelloCard.cover.scaled[4].url;}
+                    var image = "/img/profile-placeholder.png";
+
+                    if (trelloCard.cover.scaled != undefined) {
+                      image = trelloCard.cover.scaled[4].url;
+                    }
 
                     // uncomment following block to store all labels in Label variable  (Space Sperated)
-                            
-                     $.each(trelloCard.labels, function (index, element) {
-                       Label = Label + '<div class="chip light-green lighten-2">'+element.name + '</div> ';
 
-                     });
+                    $.each(trelloCard.labels, function (index, element) {
+                      Label = Label + '<div class="chip light-green lighten-2">' + element.name + '</div> ';
 
-                    description=trelloCard.desc;
+                    });
+
+                    description = trelloCard.desc;
 
                     $.each(trelloCard.customFieldItems, function (index, customFieldItem) {
                       if (customFieldItem.value.text != undefined) {
@@ -197,7 +199,7 @@
                       }
                     });
 
-                    makeCard(image, trelloCard.name, github, Country, TimeZone,description,Label);
+                    makeCard(image, trelloCard.name, github, Country, TimeZone, description, Label);
 
                     // Init Modal
                     $(document).ready(function () {
@@ -305,4 +307,5 @@
   }
 
 </script> -->
+
 </html>
