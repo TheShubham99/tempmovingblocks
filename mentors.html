@@ -124,7 +124,7 @@
                     <div>Country:
                     `+ getCountryName(Country) + `
                     </div>
-                    <div>gi
+                    <div>
                       Local Time:
                       `+ time + `
                           </div>
@@ -155,7 +155,7 @@
 
                   const url = trelloCards.url + '.json?fields=name,labels,cover,desc&customFields=true&customFieldItems=true'
 
-                  var Label;
+                  var Label='';
                   var github;
                   var TimeZone;
                   var Country;
@@ -170,7 +170,7 @@
                     // uncomment following block to store all labels in Label variable  (Space Sperated)
                             
                      $.each(trelloCard.labels, function (index, element) {
-                       Label = Label + '<div class="chip light-green lighten-2">'+element.name + '</div> ';
+                       Label = Label + '<div class="chip light-green lighten-2">'+element.name + '</div><br>';
 
                      });
 
